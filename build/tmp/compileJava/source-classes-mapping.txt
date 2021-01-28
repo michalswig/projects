@@ -2,9 +2,15 @@ com/michal/projects/tictactoeProject/TicTacToeApp.java
  com.michal.projects.tictactoeProject.TicTacToeApp
  com.michal.projects.tictactoeProject.TicTacToeApp$Combo
  com.michal.projects.tictactoeProject.TicTacToeApp$Tile
+com/michal/projects/tictactoeProject2/TicTacToeRunner.java
+ com.michal.projects.tictactoeProject2.TicTacToeRunner
+com/michal/projects/tictactoeProject3/gameLogic.java
+ com.michal.projects.tictactoeProject3.gameLogic
 com/michal/projects/tictactoeProject2/Logic.java
  com.michal.projects.tictactoeProject2.Logic
 com/michal/projects/tictactoeProject2/Tile.java
  com.michal.projects.tictactoeProject2.Tile
-com/michal/projects/tictactoeProject2/TicTacToeRunner.java
- com.michal.projects.tictactoeProject2.TicTacToeRunner
+com/michal/projects/tictactoeProject3/TicTacToeRunner.java
+ com.michal.projects.tictactoeProject3.TicTacToeRunner
+com/michal/projects/tictactoeProject3/Cell.java
+ com.michal.projects.tictactoeProject3.Cell

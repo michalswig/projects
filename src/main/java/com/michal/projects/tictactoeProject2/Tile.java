@@ -30,12 +30,15 @@ class Tile extends StackPane {
 
         setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY) {
+                if(!logic.isComputerTurn) return;
                 if(logic.isEmptySpaceToMakeTheTurn(x, y)){
                     logic.makeATurn(x, y, 'X');
                     drawX();
+                    logic.isComputerTurn = false;
                 }
 
-               computerTurn();
+                computerTurn();
+                logic.isComputerTurn = true;
             }
         });
 

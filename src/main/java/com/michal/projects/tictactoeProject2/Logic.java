@@ -3,7 +3,7 @@ package com.michal.projects.tictactoeProject2;
 import java.util.Random;
 
 public class Logic {
-
+    public boolean isComputerTurn = true;
     public int boardSize = 3;
     private char[][] board = {{' ', ' ', ' '},
             {' ', ' ', ' '},

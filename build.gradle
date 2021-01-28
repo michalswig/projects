@@ -26,4 +26,4 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'com.michal.projects.tictactoeProject2.TicTacToeRunner'
+mainClassName = 'com.michal.projects.tictactoeProject3.TicTacToeRunner'
