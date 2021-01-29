@@ -30,7 +30,6 @@ public class Cell extends StackPane {
                 gameLogic.ifCanPlay = false;
             }
         });
-
     }
 
     public void computerMove(){

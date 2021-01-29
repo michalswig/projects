@@ -33,8 +33,15 @@ public class TicTacToeRunner extends Application {
                 tile.setTranslateY(i * 200);
                 board[i][j] = tile;
                 pane.getChildren().add(tile);
+
             }
+
         }
+
+        Computer computer = new Computer(logic, board);
+        computer.start();
+
         return pane;
     }
+
 }

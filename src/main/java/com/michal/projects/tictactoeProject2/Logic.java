@@ -1,11 +1,18 @@
 package com.michal.projects.tictactoeProject2;
 
-import java.util.Random;
-
 public class Logic {
-    public boolean isComputerTurn = true;
+    private boolean isPlayerTurn = true;
+
+    public boolean isPlayerTurn() {
+        return isPlayerTurn;
+    }
+
+    public void setPlayerTurn(boolean playerTurn) {
+        isPlayerTurn = playerTurn;
+    }
+
     public int boardSize = 3;
-    private char[][] board = {{' ', ' ', ' '},
+    private char[][] boardLogic = {{' ', ' ', ' '},
             {' ', ' ', ' '},
             {' ', ' ', ' '}};
 
@@ -18,9 +25,9 @@ public class Logic {
             System.out.println("Computer wins!");
             return true;
         }
-        for(int i = 0; i < this.board.length; i++) {
-            for (int j = 0; j < this.board[i].length; j++){
-                if(this.board[i][j] == ' '){
+        for(int i = 0; i < this.boardLogic.length; i++) {
+            for (int j = 0; j < this.boardLogic[i].length; j++){
+                if(this.boardLogic[i][j] == ' '){
                     return false;
                 }
             }
@@ -30,41 +37,32 @@ public class Logic {
     }
 
     private boolean hasWon(char symbol) {
-        if( (this.board[0][0] == symbol && this.board[0][1] == symbol && this.board[0][2] == symbol) ||
-                (this.board[1][0] == symbol && this.board[1][1] == symbol && this.board[1][2] == symbol) ||
-                (this.board[2][0] == symbol && this.board[2][1] == symbol && this.board[2][2] == symbol) ||
+        if( (this.boardLogic[0][0] == symbol && this.boardLogic[0][1] == symbol && this.boardLogic[0][2] == symbol) ||
+                (this.boardLogic[1][0] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[1][2] == symbol) ||
+                (this.boardLogic[2][0] == symbol && this.boardLogic[2][1] == symbol && this.boardLogic[2][2] == symbol) ||
 
-                (this.board[0][0] == symbol && this.board[1][0] == symbol && this.board[2][0] == symbol) ||
-                (this.board[0][1] == symbol && this.board[1][1] == symbol && this.board[2][1] == symbol) ||
-                (this.board[0][2] == symbol && this.board[1][2] == symbol && this.board[2][2] == symbol) ||
+                (this.boardLogic[0][0] == symbol && this.boardLogic[1][0] == symbol && this.boardLogic[2][0] == symbol) ||
+                (this.boardLogic[0][1] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][1] == symbol) ||
+                (this.boardLogic[0][2] == symbol && this.boardLogic[1][2] == symbol && this.boardLogic[2][2] == symbol) ||
 
-                (this.board[0][1] == symbol && this.board[1][1] == symbol && this.board[2][2] == symbol) ||
-                (this.board[0][2] == symbol && this.board[1][1] == symbol && this.board[2][0] == symbol) ) {
+                (this.boardLogic[0][1] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][2] == symbol) ||
+                (this.boardLogic[0][2] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][0] == symbol) ) {
             return true;
         }
         return false;
     }
 
-    private void computerTurn() {
-        Random random = new Random();
-        int computerTurnX = random.nextInt(boardSize);
-        int computerTurnY = random.nextInt(boardSize);
-        while(!isEmptySpaceToMakeTheTurn(computerTurnX, computerTurnY)){
-            computerTurnX = random.nextInt(boardSize);
-            computerTurnY = random.nextInt(boardSize);
-        }
-        makeATurn(computerTurnX, computerTurnY, 'O');
-    }
+
 
     public boolean isEmptySpaceToMakeTheTurn(int x, int y) {
-        if (this.board[x][y] == ' ') {
+        if (this.boardLogic[x][y] == ' ') {
             return true;
         } else return false;
     }
 
     public boolean makeATurn(int x, int y, char symbol){
         if(isEmptySpaceToMakeTheTurn(x, y)){
-            this.board[x][y] = symbol;
+            this.boardLogic[x][y] = symbol;
             return true;
         }
         return false;

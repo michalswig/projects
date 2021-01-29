@@ -9,7 +9,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.util.Random;
-import java.util.Scanner;
 
 class Tile extends StackPane {
     int x;
@@ -18,6 +17,8 @@ class Tile extends StackPane {
     TicTacToeRunner ticTacToeRunner = new TicTacToeRunner();
     Logic logic;
     public Tile(Logic logic, int x, int y) {
+        System.out.println("test run()");
+
         this.x = x;
         this.y = y;
         this.logic = logic;
@@ -30,43 +31,24 @@ class Tile extends StackPane {
 
         setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY) {
-                if(!logic.isComputerTurn) return;
+                if(!logic.isPlayerTurn()) return;
                 if(logic.isEmptySpaceToMakeTheTurn(x, y)){
                     logic.makeATurn(x, y, 'X');
                     drawX();
-                    logic.isComputerTurn = false;
+                    logic.setPlayerTurn(false);
                 }
-
-                computerTurn();
-                logic.isComputerTurn = true;
             }
         });
 
     }
 
-    private void drawX() {
+    public void drawX() {
         text.setText("X");
     }
 
-    private void drawO() {
+    public void drawO() {
         text.setText("O");
     }
-
-    private void computerTurn() {
-        Random random = new Random();
-        int randomX = random.nextInt(3);
-        int randomY = random.nextInt(3);
-        while(!logic.isEmptySpaceToMakeTheTurn(randomX, randomY)){
-            randomX = random.nextInt(3);
-            randomY = random.nextInt(3);
-        }
-        logic.makeATurn(randomX, randomY, 'O');
-        drawO();
-    }
-
-
-
-
 
 
 }

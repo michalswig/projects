@@ -21,8 +21,6 @@ public class TicTacToeRunner extends Application {
                 int count = 0;
                 cell[i][j] = new Cell();
                 gridPane.add(cell[i][j], i, j);
-
-
             }
         }
 
