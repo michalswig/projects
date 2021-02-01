@@ -1,5 +1,7 @@
 package com.michal.projects.tictactoeProject2;
 
+import javafx.scene.text.Text;
+
 import java.util.Random;
 
 public class Computer extends Thread {
@@ -12,9 +14,7 @@ public class Computer extends Thread {
     }
 
     public void run() {
-
-        while(true){
-            System.out.println("test run()");
+        while(!logic.isTheGameFinished()){
             if(!logic.isPlayerTurn()) {
                 computerTurn();
             } else {
@@ -31,7 +31,7 @@ public class Computer extends Thread {
         Random random = new Random();
         int computerTurnX = random.nextInt(3);
         int computerTurnY = random.nextInt(3);
-        while(logic.isEmptySpaceToMakeTheTurn(computerTurnX, computerTurnY)){
+        while(!logic.isEmptySpaceToMakeTheTurn(computerTurnX, computerTurnY)){
             computerTurnX = random.nextInt(3);
             computerTurnY = random.nextInt(3);
         }
@@ -39,4 +39,7 @@ public class Computer extends Thread {
         board[computerTurnX][computerTurnY].drawO();
         logic.setPlayerTurn(true);
     }
+
+
+
 }

@@ -1,5 +1,14 @@
 package com.michal.projects.tictactoeProject2;
 
+import com.michal.projects.tictactoeProject.TicTacToeApp;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.scene.control.Label;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+
 public class Logic {
     private boolean isPlayerTurn = true;
 
@@ -16,13 +25,15 @@ public class Logic {
             {' ', ' ', ' '},
             {' ', ' ', ' '}};
 
-    private boolean isTheGameFinished() {
+    public boolean isTheGameFinished() {
         if (hasWon('X')) {
-            System.out.println("You wins!");
+            drawLine('X');
+            System.out.println("You won!");
             return true;
         }
         if (hasWon('O')) {
-            System.out.println("Computer wins!");
+            drawLine('O');
+            System.out.println("Computer won!");
             return true;
         }
         for(int i = 0; i < this.boardLogic.length; i++) {
@@ -36,8 +47,8 @@ public class Logic {
         return true;
     }
 
-    private boolean hasWon(char symbol) {
-        if( (this.boardLogic[0][0] == symbol && this.boardLogic[0][1] == symbol && this.boardLogic[0][2] == symbol) ||
+    public boolean hasWon(char symbol) {
+        if(     (this.boardLogic[0][0] == symbol && this.boardLogic[0][1] == symbol && this.boardLogic[0][2] == symbol) ||
                 (this.boardLogic[1][0] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[1][2] == symbol) ||
                 (this.boardLogic[2][0] == symbol && this.boardLogic[2][1] == symbol && this.boardLogic[2][2] == symbol) ||
 
@@ -45,13 +56,12 @@ public class Logic {
                 (this.boardLogic[0][1] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][1] == symbol) ||
                 (this.boardLogic[0][2] == symbol && this.boardLogic[1][2] == symbol && this.boardLogic[2][2] == symbol) ||
 
-                (this.boardLogic[0][1] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][2] == symbol) ||
+                (this.boardLogic[0][0] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][2] == symbol) ||
                 (this.boardLogic[0][2] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][0] == symbol) ) {
             return true;
         }
         return false;
     }
-
 
 
     public boolean isEmptySpaceToMakeTheTurn(int x, int y) {
@@ -67,5 +77,61 @@ public class Logic {
         }
         return false;
     }
+
+    Line line = new Line();
+    public void drawLine(char symbol){
+        if((this.boardLogic[0][0] == symbol && this.boardLogic[0][1] == symbol && this.boardLogic[0][2] == symbol)){
+            line.setStartX(100.0f);
+            line.setStartY(100.0f);
+            line.setEndX(500.0f);
+            line.setEndY(100.0f);
+        }
+        if((this.boardLogic[1][0] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[1][2] == symbol)){
+            line.setStartX(100.0f);
+            line.setStartY(300.0f);
+            line.setEndX(500.0f);
+            line.setEndY(300.0f);
+        }
+        if((this.boardLogic[2][0] == symbol && this.boardLogic[2][1] == symbol && this.boardLogic[2][2] == symbol)){
+            line.setStartX(100.0f);
+            line.setStartY(500.0f);
+            line.setEndX(500.0f);
+            line.setEndY(500.0f);
+        }
+        if((this.boardLogic[0][0] == symbol && this.boardLogic[1][0] == symbol && this.boardLogic[2][0] == symbol)){
+            line.setStartX(100.0f);
+            line.setStartY(100.0f);
+            line.setEndX(100.0f);
+            line.setEndY(500.0f);
+        }
+        if((this.boardLogic[0][1] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][1] == symbol)){
+            line.setStartX(300.0f);
+            line.setStartY(100.0f);
+            line.setEndX(300.0f);
+            line.setEndY(500.0f);
+        }
+        if((this.boardLogic[0][2] == symbol && this.boardLogic[1][2] == symbol && this.boardLogic[2][2] == symbol)){
+            line.setStartX(500.0f);
+            line.setStartY(100.0f);
+            line.setEndX(500.0f);
+            line.setEndY(500.0f);
+        }
+        if((this.boardLogic[0][0] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][2] == symbol)){
+            line.setStartX(100.0f);
+            line.setStartY(100.0f);
+            line.setEndX(500.0f);
+            line.setEndY(500.0f);
+        }
+        if( (this.boardLogic[0][2] == symbol && this.boardLogic[1][1] == symbol && this.boardLogic[2][0] == symbol)){
+            line.setStartX(500.0f);
+            line.setStartY(100.0f);
+            line.setEndX(100.0f);
+            line.setEndY(500.0f);
+        }
+    }
+
+
+
+
 
 }

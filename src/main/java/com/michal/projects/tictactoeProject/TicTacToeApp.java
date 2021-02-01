@@ -89,7 +89,6 @@ public class TicTacToeApp extends Application {
                 Tile tile = new Tile();
                 tile.setTranslateX(j * 200);
                 tile.setTranslateY(i * 200);
-
                 root.getChildren().add(tile);
 
                 board[j][i] = tile;
@@ -119,7 +118,6 @@ public class TicTacToeApp extends Application {
             border.setFill(null);
             border.setStroke(Color.BLACK);
             text.setFont(Font.font(72));
-            //setAlignment(Pos.CENTER);
             getChildren().addAll(border, text);
 
             setOnMouseClicked(e -> {
