@@ -8,10 +8,10 @@ com/michal/projects/tictactoeProject3/Cell.java
  com.michal.projects.tictactoeProject3.Cell
 com/michal/projects/tictactoeProject3/gameLogic.java
  com.michal.projects.tictactoeProject3.gameLogic
-com/michal/projects/tictactoeProject2/Logic.java
- com.michal.projects.tictactoeProject2.Logic
 com/michal/projects/tictactoeProject2/Computer.java
  com.michal.projects.tictactoeProject2.Computer
+com/michal/projects/tictactoeProject2/Logic.java
+ com.michal.projects.tictactoeProject2.Logic
 com/michal/projects/tictactoeProject2/Tile.java
  com.michal.projects.tictactoeProject2.Tile
 com/michal/projects/tictactoeProject2/TicTacToeRunner.java

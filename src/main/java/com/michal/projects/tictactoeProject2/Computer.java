@@ -1,12 +1,11 @@
 package com.michal.projects.tictactoeProject2;
 
-import javafx.scene.text.Text;
-
 import java.util.Random;
 
 public class Computer extends Thread {
     Logic logic;
     Tile[][] board;
+
 
     public Computer(Logic logic, Tile[][] board) {
         this.logic = logic;
@@ -17,6 +16,7 @@ public class Computer extends Thread {
         while(!logic.isTheGameFinished()){
             if(!logic.isPlayerTurn()) {
                 computerTurn();
+
             } else {
                 try {
                     Thread.sleep(1000);
@@ -39,7 +39,5 @@ public class Computer extends Thread {
         board[computerTurnX][computerTurnY].drawO();
         logic.setPlayerTurn(true);
     }
-
-
 
 }

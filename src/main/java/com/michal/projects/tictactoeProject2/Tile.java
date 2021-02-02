@@ -9,7 +9,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 class Tile extends StackPane {
-    TicTacToeRunner ticTacToeRunner;
     Text text = new Text();
     Logic logic;
     int x;
@@ -35,26 +34,16 @@ class Tile extends StackPane {
                     if(logic.isEmptySpaceToMakeTheTurn(x, y)){
                         logic.makeATurn(x, y, 'X');
                         drawX();
-
-                        if(logic.hasWon('X')){
-                            ticTacToeRunner.changeLabelText();
-                        }
-
                         logic.setPlayerTurn(false);
                     }
                 }
             }
         });
-
     }
-
     public void drawX() {
         text.setText("X");
     }
     public void drawO() {
         text.setText("O");
     }
-
-
-
 }

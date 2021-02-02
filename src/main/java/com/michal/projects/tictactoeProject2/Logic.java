@@ -1,15 +1,14 @@
 package com.michal.projects.tictactoeProject2;
 
-import com.michal.projects.tictactoeProject.TicTacToeApp;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.scene.control.Label;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 public class Logic {
+    TicTacToeRunner ticTacToeRunner;
+
+    public Logic(TicTacToeRunner ticTacToeRunner) {
+        this.ticTacToeRunner = ticTacToeRunner;
+    }
+
     private boolean isPlayerTurn = true;
 
     public boolean isPlayerTurn() {
@@ -28,12 +27,12 @@ public class Logic {
     public boolean isTheGameFinished() {
         if (hasWon('X')) {
             drawLine('X');
-            System.out.println("You won!");
+            ticTacToeRunner.labelText.setText("Player won!");
             return true;
         }
         if (hasWon('O')) {
             drawLine('O');
-            System.out.println("Computer won!");
+            ticTacToeRunner.labelText.setText("Computer won!");
             return true;
         }
         for(int i = 0; i < this.boardLogic.length; i++) {
@@ -43,7 +42,7 @@ public class Logic {
                 }
             }
         }
-        System.out.println("End of game, it`s a tie!");
+        ticTacToeRunner.labelText.setText("End of game, it`s a tie!");
         return true;
     }
 
@@ -62,7 +61,6 @@ public class Logic {
         }
         return false;
     }
-
 
     public boolean isEmptySpaceToMakeTheTurn(int x, int y) {
         if (this.boardLogic[x][y] == ' ') {
@@ -129,9 +127,5 @@ public class Logic {
             line.setEndY(500.0f);
         }
     }
-
-
-
-
 
 }

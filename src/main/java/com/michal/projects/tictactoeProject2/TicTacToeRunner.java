@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class TicTacToeRunner extends Application {
-    Logic logic = new Logic();
+    Logic logic = new Logic(this);
     Pane pane = new Pane();
     public Pane statusMsg = new Pane();
     public Text labelText = new Text("Ready to play? Go!");
@@ -33,15 +33,11 @@ public class TicTacToeRunner extends Application {
         statusMsg.getChildren().add(labelText);
         borderPane.setBottom(statusMsg);
         Scene scene = new Scene(borderPane, 600, 650);
-        //primaryStage.setScene(new Scene(createBoard()));
         primaryStage.setTitle("TicTacToeGame");
         primaryStage.setScene(scene);
         primaryStage.show();
-        //logic.drawLine();
         Computer computer = new Computer(logic, board);
         computer.start();
-
-
     }
 
     private Parent createBoard() {
@@ -55,24 +51,11 @@ public class TicTacToeRunner extends Application {
                 pane.getChildren().add(tile);
             }
         }
-
         pane.getChildren().add(logic.line);
-
         return pane;
-
     }
 
-    public void changeLabelText(){
-        if(logic.hasWon('X')){
-            labelText.setText("You won");
-        }
-        if (logic.hasWon('O')){
-            labelText.setText("Computer won");
-        }
-        else {
-            labelText.setText("its a draw!");
-        }
-    }
+
 
 
 
