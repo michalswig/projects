@@ -1,25 +1,30 @@
 package com.michal.projects.tictactoeProject2;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class TicTacToeRunner extends Application {
+
     Logic logic = new Logic(this);
-    Pane pane = new Pane();
-    public Pane statusMsg = new Pane();
-    public Text labelText = new Text("Ready to play? Go!");
     Tile[][] board = new Tile[3][3];
+    //główne menu z planszą
+    Pane pane = new Pane();
+    //dolne menu
+    public GridPane statusMsg = new GridPane();
+    public Text labelText = new Text("Ready to play? Go!");
+
+    //górne menu z tesktem i rozwijaną listą
+    GridPane upperMenu = new GridPane();
+    Text chooseSymbolPlayer = new Text("choose Player`s symbol and start to play :) >default x<");
+    ChoiceBox<Character> symbolPlayer = new ChoiceBox<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -28,16 +33,40 @@ public class TicTacToeRunner extends Application {
     @Override
     public void start(Stage primaryStage) {
         BorderPane borderPane = new BorderPane();
-        borderPane.setCenter(new Pane(createBoard()));
+
+        //dolne menu
+        setMenu(statusMsg, labelText);
+        statusMsg.setStyle("-fx-background-color: #f5f5dc;");
         labelText.setFont(Font.font(16));
-        statusMsg.getChildren().add(labelText);
+
+        //górne menu
+        setMenu(upperMenu, chooseSymbolPlayer);
+        upperMenu.add(symbolPlayer, 1, 0);
+        upperMenu.setStyle("-fx-background-color: BEIGE;");
+        symbolPlayer.getItems().addAll('X', 'Y', 'Z');
+        chooseSymbolPlayer.setFont(Font.font(16));
+
+        //ustawienie głównego okna
+        borderPane.setTop(upperMenu);
+        borderPane.setCenter(new Pane(createBoard()));
         borderPane.setBottom(statusMsg);
-        Scene scene = new Scene(borderPane, 600, 650);
+        Scene scene = new Scene(borderPane, 600, 702);
         primaryStage.setTitle("TicTacToeGame");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        //wątek ruchu komputera
         Computer computer = new Computer(logic, board);
         computer.start();
+    }
+
+    private void setMenu(GridPane upperMenu, Text chooseSymbolPlayer) {
+        upperMenu.setPadding(new Insets(10, 10, 10, 10));
+        upperMenu.setVgap(5);
+        upperMenu.setHgap(5);
+        upperMenu.setAlignment(Pos.CENTER);
+        upperMenu.setPrefSize(600, 50);
+        upperMenu.add(chooseSymbolPlayer, 0, 0);
     }
 
     private Parent createBoard() {
@@ -54,11 +83,4 @@ public class TicTacToeRunner extends Application {
         pane.getChildren().add(logic.line);
         return pane;
     }
-
-
-
-
-
-
-
 }
