@@ -13,8 +13,8 @@ public class Computer extends Thread {
     }
 
     public void run() {
-        while(!logic.isTheGameFinished()){
-            if(!logic.isPlayerTurn()) {
+        while (!logic.isTheGameFinished()) {
+            if (!logic.isPlayerTurn()) {
                 computerTurn();
 
             } else {
@@ -31,7 +31,7 @@ public class Computer extends Thread {
         Random random = new Random();
         int computerTurnX = random.nextInt(3);
         int computerTurnY = random.nextInt(3);
-        while(!logic.isEmptySpaceToMakeTheTurn(computerTurnX, computerTurnY)){
+        while (!logic.isEmptySpaceToMakeTheTurn(computerTurnX, computerTurnY)) {
             computerTurnX = random.nextInt(3);
             computerTurnY = random.nextInt(3);
         }

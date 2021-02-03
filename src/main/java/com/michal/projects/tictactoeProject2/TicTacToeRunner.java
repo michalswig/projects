@@ -15,15 +15,13 @@ public class TicTacToeRunner extends Application {
 
     Logic logic = new Logic(this);
     Tile[][] board = new Tile[3][3];
-    //główne menu z planszą
     Pane pane = new Pane();
-    //dolne menu
+
     public GridPane statusMsg = new GridPane();
     public Text labelText = new Text("Ready to play? Go!");
 
-    //górne menu z tesktem i rozwijaną listą
     GridPane upperMenu = new GridPane();
-    Text chooseSymbolPlayer = new Text("choose Player`s symbol and start to play :) >default x<");
+    Text chooseSymbolPlayer = new Text("choose Player`s symbol and start to play");
     ChoiceBox<Character> symbolPlayer = new ChoiceBox<>();
 
     public static void main(String[] args) {
@@ -34,19 +32,20 @@ public class TicTacToeRunner extends Application {
     public void start(Stage primaryStage) {
         BorderPane borderPane = new BorderPane();
 
-        //dolne menu
         setMenu(statusMsg, labelText);
         statusMsg.setStyle("-fx-background-color: #f5f5dc;");
         labelText.setFont(Font.font(16));
 
-        //górne menu
         setMenu(upperMenu, chooseSymbolPlayer);
         upperMenu.add(symbolPlayer, 1, 0);
         upperMenu.setStyle("-fx-background-color: BEIGE;");
-        symbolPlayer.getItems().addAll('X', 'Y', 'Z');
+        symbolPlayer.getItems().addAll(logic.getListAvailableSigns());
+        symbolPlayer.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            int index = symbolPlayer.getSelectionModel().getSelectedIndex();
+            logic.setPlayerSign(logic.getListItem(index));
+        });
         chooseSymbolPlayer.setFont(Font.font(16));
 
-        //ustawienie głównego okna
         borderPane.setTop(upperMenu);
         borderPane.setCenter(new Pane(createBoard()));
         borderPane.setBottom(statusMsg);
@@ -55,7 +54,6 @@ public class TicTacToeRunner extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        //wątek ruchu komputera
         Computer computer = new Computer(logic, board);
         computer.start();
     }
@@ -71,8 +69,8 @@ public class TicTacToeRunner extends Application {
 
     private Parent createBoard() {
         pane.setPrefSize(600, 600);
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 Tile tile = new Tile(logic, i, j);
                 tile.setTranslateX(j * 200);
                 tile.setTranslateY(i * 200);
